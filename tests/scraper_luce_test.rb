@@ -16,10 +16,6 @@ class TestScraperLuce < Minitest::Test
 
   def test_that_each_pizza_has_at_least_two_size_options
     @@luce.pizzas.each do |pizza|
-      puts pizza.name
-      puts pizza.size_options.length
-    end
-    @@luce.pizzas.each do |pizza|
       assert(pizza.size_options.length >= 2)
     end
   end
@@ -42,12 +38,12 @@ class TestScraperLuce < Minitest::Test
 
   def test_that_at_least_one_pizza_has_luce_in_the_name
     pass = false
-    @@luce.pizza.each do |pizza|
+    @@luce.pizzas.each do |pizza|
       pass = true if pizza.name.downcase.match(/luce/)
     end
     assert(pass)
   end
 
-  
+
 
 end

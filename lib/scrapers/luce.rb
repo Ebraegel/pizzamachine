@@ -9,49 +9,65 @@ module PizzaMachine
         url = 'https://pizzaluce.com/menu/'
 
         page = Nokogiri::HTML(Faraday.get(url).body)
+=begin
+<...a bunch of stuff, but we start with the "menu-cat3" div and hope it NEVER CHANGES :) />
+<div id="menu-cat3" class="menu-category in-scroll" style="opacity: 1;">
+  <div class="menu-category-list">  
+    <a name="specialty-pizza"></a>
+    <div class="menu-category-title">
+      <h3 class="serif">Specialty Pizza</h3>
+      <p><em>Our award winning hand-tossed pizza begins with dough made fresh daily from whole grain flour and olive oil. Our gluten-free crusts are made fresh by a local gluten-free bakery.
+        Small 10" Serves 1-2
+        Medium 12" Serves 2-3
+        Large 16" Serves 3-5
+        Gluten-Free 10" Serves 1-2</em></p>
+    </div>
 
+    <div class="menu-item cat3 cat71 activeMenuItem activeItem">
+      <div class="menu-img">
+        <img src="http://pizzaluce.com//assets/photos/menu/BakedPotato.jpg" alt="Baked Potato Pizza  |&nbsp; GFR">
+      </div>
+      <div class="menu-txt">
+        <h4 class="sans mgray bld">Baked Potato Pizza  |&nbsp; GFR</h4>
+        <p>Idaholy Moly! We smother our pizza crust in&nbsp;buttery, garlic baby red mashed potatoes and top it with broccoli, fresh-diced tomatoes, cheddar cheese and chopped bacon. Served with a side of sour cream.</p>
+        <p><strong>10” sm 14.49 | 12” med 18.19 | 16” lg 23.69 | GF 18.49</strong></p>
+      </div>
+    </div>
+<...and more stuff follows>
+=end
+        # Get the divs with a class of "menu-item" inside the div with an id of menu-cat3
+        # Hopefully, the specialty pizza section always has an ID of menu-cat3
+        # Maybe by the time if changes I'll be way better at this
+        specialty_menu_items = page.css("div#menu-cat3").css("div.menu-item")
+
+        # Now get the text of all the h4 elements AND all the p elements (only those that are also strong) within menu-txt divs
+        specialty_menu_item_text = specialty_menu_items.css("div.menu-txt").css('h4, p strong')
         menu = []
-
-        page.traverse do |node|
-          menu << node if (node.name == "h3" || node.name = "h4" || node.name = "p")
-        end
-
-        menu.keep_if {|e| ( e.class == Nokogiri::XML::Text && e.text.match(/\w+/) ) }
-
-        menu.map!(&:text)
-
-        while menu.include?("Specialty Pizza")
-            i = menu.index("Specialty Pizza")
-            menu = menu.drop(i+1)
-        end
-
-        menu.keep_if { |e| e =~ /\|/ }
-        menu.delete_if { |e| e =~ /\=/ }
-
-        luce = PizzaMachine::PizzaPlace.new(name: "Pizza Luce")
+        specialty_menu_item_text.each { |e| menu << e.text }
 
 =begin
-
-["Baked Potato Pizza  |  GFR",
- "10” sm 14.49 | 12” med 18.19 | 16” lg 23.69 | GF 18.49",
- "Fire Breathing Dragon | GFR",
- "10” sm 14.49 | 12” med 18.19 | 16” lg 23.69 | GF 10\" 18.49",
- ... ]
+menu = ["Baked Potato Pizza  |  GFR",
+         "10” sm 14.49 | 12” med 18.19 | 16” lg 23.69 | GF 18.49",
+         "Fire Breathing Dragon | GFR",
+         "10” sm 14.49 | 12” med 18.19 | 16” lg 23.69 | GF 10\" 18.49",
+         ... ]
 =end
 
         menu.map! { |e| e.split('|') }
 
 =begin
   
-[["Baked Potato Pizza  ", "  GFR"],
- ["10” sm 14.49 ", " 12” med 18.19 ", " 16” lg 23.69 ", " GF 18.49"],
- ["Fire Breathing Dragon ", " GFR"],
- ["10” sm 14.49 ", " 12” med 18.19 ", " 16” lg 23.69 ", " GF 10\" 18.49"],
- ... ]
-
+menu = [["Baked Potato Pizza  ", "  GFR"],
+         ["10” sm 14.49 ", " 12” med 18.19 ", " 16” lg 23.69 ", " GF 18.49"],
+         ["Fire Breathing Dragon ", " GFR"],
+         ["10” sm 14.49 ", " 12” med 18.19 ", " 16” lg 23.69 ", " GF 10\" 18.49"],
+         ... ]
 =end
 
+
+        luce = PizzaMachine::PizzaPlace.new(name: "Pizza Luce")
         pizza = PizzaMachine::Pizza.new
+
         shape = "round"
 
         menu.each do |a|
