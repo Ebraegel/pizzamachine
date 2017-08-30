@@ -1,4 +1,43 @@
-TODO:
+PizzaMachine
+====
+I'll give this a better name someday.
+
+Installation
+====
+OSX/Linux only.
+### Prerequisites
+* [Homebrew](https://brew.sh/)
+* [rbenv](https://github.com/rbenv/rbenv) (`brew install rbenv`)
+
+### Setup
+```
+rbenv install
+gem install bundler
+bundle install
+```
+**TODO**: Dockerize all of this
+Development
+====
+
+Shortcut to a pry session with all the classes loaded:
+
+```
+bin/pry-test-env
+```
+
+Once you're in there, try something like
+
+```
+luce = PizzaMachine::Scraper::Luce.run
+```
+
+### Run tests
+```
+bundle exec rake test
+```
+
+TODO
+====
 
 in no particular order
 
