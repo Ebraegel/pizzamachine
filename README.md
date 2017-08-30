@@ -15,7 +15,11 @@ rbenv install
 gem install bundler
 bundle install
 ```
-**TODO**: Dockerize all of this
+### Or, with Docker (experimental)
+```
+docker build -t pizzamachine .
+```
+
 Development
 ====
 
@@ -23,6 +27,13 @@ Shortcut to a pry session with all the classes loaded:
 
 ```
 bundle exec bin/pry-test-env
+```
+
+Or, the same thing with docker (experimental)
+
+```
+docker run -it pizzamachine
+require_relative './lib/pizzamachine.rb'
 ```
 
 Once you're in there, try something like
@@ -34,6 +45,9 @@ luce = PizzaMachine::Scraper::Luce.run
 ### Run tests
 ```
 bundle exec rake test
+
+# or with docker (experimental)
+docker run pizzamachine bundle exec rake test
 ```
 
 TODO
@@ -42,6 +56,9 @@ TODO
 in no particular order
 
 * Finish Dockerizing
+  * get pry's magic pretty-printing working in the container
+  * it just drops you in irb by default, figure out what to do instead when it's run for real
+    * maybe a script to build and/or run the thing?  More research needed, maybe overlapping with the "figure out heroku" research.
 * Figure out Google Sheets API
   * how to authorize the thing to access my sheet if it's running in Heroku or somewhere
   * how to get stuff from the spreadsheet
