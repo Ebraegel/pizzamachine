@@ -22,7 +22,7 @@ Development
 Shortcut to a pry session with all the classes loaded:
 
 ```
-bin/pry-test-env
+bundle exec bin/pry-test-env
 ```
 
 Once you're in there, try something like
