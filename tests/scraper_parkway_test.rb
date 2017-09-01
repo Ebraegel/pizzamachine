@@ -27,6 +27,14 @@ class TestScraperParkway < Minitest::Test
     end
   end
 
+  def test_that_each_price_can_be_cast_to_float
+    @@parkway.pizzas.each do |pizza|
+      pizza.size_options.each do |so|
+        assert(so.price.respond_to?(:to_f))
+      end
+    end
+  end
+
   def test_that_each_size_option_has_a_valid_size
     @@parkway.pizzas.each do |pizza|
       pizza.size_options.each do |so|
@@ -34,5 +42,4 @@ class TestScraperParkway < Minitest::Test
       end
     end
   end
-
 end

@@ -1,6 +1,5 @@
 require 'minitest/autorun'
 require 'pizzamachine.rb'
-require 'pry-byebug'
 
 class TestScraperLuce < Minitest::Test
 
@@ -36,6 +35,14 @@ class TestScraperLuce < Minitest::Test
     end
   end
 
+  def test_that_each_price_can_be_cast_to_float
+    @@luce.pizzas.each do |pizza|
+      pizza.size_options.each do |so|
+        assert(so.price.respond_to?(:to_f))
+      end
+    end
+  end
+
   def test_that_at_least_one_pizza_has_luce_in_the_name
     pass = false
     @@luce.pizzas.each do |pizza|
@@ -43,7 +50,4 @@ class TestScraperLuce < Minitest::Test
     end
     assert(pass)
   end
-
-
-
 end
