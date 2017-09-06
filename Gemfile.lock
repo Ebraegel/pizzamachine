@@ -65,6 +65,8 @@ GEM
       declarative-option (< 0.2.0)
       uber (< 0.2.0)
     retriable (3.1.1)
+    sentry-raven (2.6.3)
+      faraday (>= 0.7.6, < 1.0)
     signet (0.7.3)
       addressable (~> 2.3)
       faraday (~> 0.9)
@@ -90,6 +92,7 @@ DEPENDENCIES
   nokogiri
   pry-byebug
   rake
+  sentry-raven
   sinatra
 
 RUBY VERSION
