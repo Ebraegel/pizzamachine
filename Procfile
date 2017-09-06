@@ -1,1 +1,1 @@
-web: bundle exec ruby ./lib/pizza_machine_web.rb
+web: bundle exec ruby ./lib/pizza_machine_web.rb -p 443
