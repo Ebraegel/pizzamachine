@@ -3,8 +3,8 @@
 Bundler.require
 require_relative '../lib/pizzamachine.rb'
 
-session = GoogleDrive::Session.from_service_account_key(StringIO.new(ENV['google_drive_service_account_key_json']))
-sheet = session.spreadsheet_by_title("Pizza Calculator - QC")
+session = GoogleDrive::Session.from_service_account_key(StringIO.new(ENV['GOOGLE_DRIVE_SERVICE_ACCOUNT_KEY_JSON']))
+sheet = session.spreadsheet_by_url(ENV['SPREADSHEET_URL'])
 ws = sheet.worksheets.first
 
 row = 2

@@ -29,7 +29,7 @@ Shortcut to a pry session with all the classes loaded:
 bundle exec bin/pry-test-env
 ```
 
-Or, the same thing with docker (experimental)
+Or, the same thing with docker (experimental WIP)
 
 ```
 docker run -it pizzamachine
@@ -52,10 +52,17 @@ docker run pizzamachine bundle exec rake test
 
 Heroku Deployment Instructions [WIP!]
 ====
-Create a service account as described under "On behalf of no existing users (service account)" in https://github.com/gimite/google-drive-ruby/blob/master/doc/authorization.md
+Create a service account as described under "On behalf of no existing users (service account)" in https://github.com/gimite/google-drive-ruby/blob/master/doc/authorization.md  Save the provided service account key json file in the pizzamachine project if you want; clever .gitignores are trying real hard to prevent you from committing secrets.
+
+Give the service account read/write access to your pizza calculator spreadsheet.  The email address to grant access to is the "Service Account ID" found in your Google API project's "Credentials" > "Manage Service Accounts" section.
+
 
 ```
-heroku config:set google_drive_service_account_key_json="$(< your_service_account_key_file.json)"
+heroku login
+heroku git:remote -a your_app_name
+# slurp your google drive service account creds into a config var
+heroku config:set GOOGLE_DRIVE_SERVICE_ACCOUNT_KEY_JSON="$(< your_service_account_key_file.json)"
+git push heroku master
 ```
 
 todo: pull sheet name/id into env variables
