@@ -1,4 +1,4 @@
-Bundler.require
+require 'sinatra'
 
 enable  :logging
 
