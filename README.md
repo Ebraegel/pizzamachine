@@ -75,8 +75,6 @@ heroku config:set SPREADSHEET_URL='https://docs.google.com/spreadsheets/d/id-of-
 git push heroku master
 ```
 
-todo: pull sheet name/id into env variables
-
 TODO
 ====
 
