@@ -9,5 +9,5 @@ gem 'rake'
 gem 'pry-byebug'
 gem 'google_drive'
 gem 'dotenv', require: 'dotenv/load'
+gem 'sentry-raven'
 gem 'sinatra'
-gem "sentry-raven"
