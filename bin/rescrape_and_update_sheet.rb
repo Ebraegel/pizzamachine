@@ -1,9 +1,5 @@
 #!/usr/bin/env ruby
 
-Raven.configure do |config|
-  config.dsn = ENV['RAVEN_DSN']
-end
-
 Bundler.require
 require_relative '../lib/pizzamachine.rb'
 
