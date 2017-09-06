@@ -3,7 +3,7 @@
 Bundler.require
 require_relative '../lib/pizzamachine.rb'
 
-session = GoogleDrive::Session.from_service_account_key(File.expand_path("../../PizzaMachine-QC-1662e0d6e7be.json", __FILE__))
+session = GoogleDrive::Session.from_service_account_key(StringIO.new(ENV['google_drive_service_account_key_json']))
 sheet = session.spreadsheet_by_title("Pizza Calculator - QC")
 ws = sheet.worksheets.first
 

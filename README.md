@@ -50,6 +50,16 @@ bundle exec rake test
 docker run pizzamachine bundle exec rake test
 ```
 
+Heroku Deployment Instructions [WIP!]
+====
+Create a service account as described under "On behalf of no existing users (service account)" in https://github.com/gimite/google-drive-ruby/blob/master/doc/authorization.md
+
+```
+heroku config:set google_drive_service_account_key_json="$(< your_service_account_key_file.json)"
+```
+
+todo: pull sheet name/id into env variables
+
 TODO
 ====
 
