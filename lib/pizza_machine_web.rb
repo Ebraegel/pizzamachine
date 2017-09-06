@@ -1,3 +1,5 @@
+Bundler.require
+
 class PizzaMachineWeb < Sinatra::Base
   enable  :logging
 
