@@ -1,0 +1,1 @@
+web: bundle exec ruby ./lib/pizza_machine_web.rb
