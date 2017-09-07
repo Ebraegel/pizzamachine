@@ -6,7 +6,7 @@ module PizzaMachine
 
       def self.run
 
-        url = 'http://savoypizza.com/location/minnesota/minneapolis-northeast/'
+        url = 'http://savoypizza.com/location/minnesota/minneapolis-northeas/'
 
         page = Nokogiri::HTML(Faraday.get(url).body)
 
