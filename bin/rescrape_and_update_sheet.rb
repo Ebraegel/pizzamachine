@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'raven'
+require 'sentry-raven'
 
 Raven.capture do
 
