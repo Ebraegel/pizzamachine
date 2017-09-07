@@ -1,7 +1,7 @@
 TODO
 ====
 
-in no particular order
+in no particular order 
 
 * Finish Dockerizing
   * get pry's magic pretty-printing working in the container
