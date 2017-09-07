@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
+
+require 'raven'
+
 Raven.capture do
 
   require 'google_drive'
