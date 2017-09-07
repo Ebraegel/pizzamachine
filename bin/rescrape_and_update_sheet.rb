@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-Bundler.require
+require 'google_drive'
 require_relative '../lib/pizzamachine.rb'
 
 session = GoogleDrive::Session.from_service_account_key(StringIO.new(ENV['GOOGLE_DRIVE_SERVICE_ACCOUNT_KEY_JSON']))
@@ -21,7 +21,7 @@ pizza_places.each do |pizza_place|
   pizza_place.pizzas.each do |pizza|
     pizza.size_options.each do |size_option|
       ws[row, place_col] = pizza_place.name
-      ws[row, type_col] = pizza.name
+      ws[row, type_col] = size_option.gluten_free? ? pizza.name + ' [GF]' : pizza.name
       if size_option.shape == "round"
         ws[row, diameter_round_col] = size_option.size
       elsif size_option.shape = "square"

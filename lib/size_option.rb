@@ -8,5 +8,9 @@ module PizzaMachine
       @shape = params[:shape]
       @gluten_free = params[:gluten_free] || false
     end
+
+    def gluten_free?
+      gluten_free
+    end
   end
 end

@@ -14,6 +14,15 @@ class TestSizeOption < Minitest::Test
   end
 
   def test_that_gluten_free_defaults_to_false
-    assert_equal(false, @size_option.gluten_free)
+    assert_equal(@size_option.gluten_free, false)
+  end
+
+  def test_that_the_gluten_free_bool_is_false_when_the_size_option_is_not_gluten_free
+    refute(@size_option.gluten_free?)
+  end
+
+  def test_that_the_gluten_free_bool_is_true_when_the_size_option_is_gluten_free
+    @size_option.gluten_free = true
+    assert(@size_option.gluten_free?)
   end
 end
