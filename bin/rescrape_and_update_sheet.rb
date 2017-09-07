@@ -18,6 +18,7 @@ diameter_square_col = 5
 pizza_places = [PizzaMachine::Scraper::Luce.run, PizzaMachine::Scraper::Parkway.run, PizzaMachine::Scraper::RedsSavoy.run]
 
 pizza_places.each do |pizza_place|
+  raise StandardError.new("The pizza place #{pizza_place.name} didn't pass sanity checks!\nDumping pizza_place.inspect and bailing on the whole update.  Good luck!\n\n#{pizza_place.inspect}\n") unless pizza_place.is_sane?
   pizza_place.pizzas.each do |pizza|
     pizza.size_options.each do |size_option|
       ws[row, place_col] = pizza_place.name
