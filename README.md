@@ -1,4 +1,4 @@
-PizzaMachine
+PizzaMachine [![Build Status](https://travis-ci.org/Ebraegel/pizzamachine.svg?branch=master)](https://travis-ci.org/Ebraegel/pizzamachine)
 ====
 I'll give this a better name someday.
 
