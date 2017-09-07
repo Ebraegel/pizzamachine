@@ -11,7 +11,7 @@ module PizzaMachine
         page = Nokogiri::HTML(Faraday.get(url).body)
 
         specialty_menu_items = page.css("div#menu > table:nth-child(3) > tbody > tr")
-        
+
         menu = {}
 
         specialty_menu_items.each do |tr|
@@ -51,5 +51,3 @@ menu
     end # RedsSavoy
   end # Scraper
 end # PizzaMachine
-
-

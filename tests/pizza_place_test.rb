@@ -18,7 +18,7 @@ class TestPizzaPlace < Minitest::Test
     ["Big Dog", "Cat Soup", "Rat Friends", "Weasel Eyes", "Soda Bread"].each do |pizza_name|
       pizza = PizzaMachine::Pizza.new(name: pizza_name)
       @pizza_place.add_pizza(pizza)
-      [["10", "9.99"], ["12", "13.99"]]. each do |size, price|      
+      [["10", "9.99"], ["12", "13.99"]]. each do |size, price|
         pizza.add_size_option(size: size, price: price, shape: "round")
       end
     end

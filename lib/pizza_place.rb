@@ -13,10 +13,10 @@ module PizzaMachine
 
     def is_sane?
       self.has_at_least_five_pizzas? &&
-      self.each_pizza_has_at_least_two_size_options? &&
-      self.each_size_option_has_a_valid_price? &&
-      self.each_size_option_has_a_valid_size? &&
-      self.each_price_can_be_cast_to_float?
+        self.each_pizza_has_at_least_two_size_options? &&
+        self.each_size_option_has_a_valid_price? &&
+        self.each_size_option_has_a_valid_size? &&
+        self.each_price_can_be_cast_to_float?
     end
 
     def has_at_least_five_pizzas?

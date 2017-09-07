@@ -81,7 +81,7 @@ menu = [["Baked Potato Pizza  ", "  GFR"],
               if so.match("GF")
                 gluten_free = true
                 size = "10"
-              else 
+              else
                 gluten_free = false
                 size = so.match(/\d+/)[0]
               end
@@ -94,5 +94,3 @@ menu = [["Baked Potato Pizza  ", "  GFR"],
     end # Parkway
   end # Scraper
 end # PizzaMachine
-
-

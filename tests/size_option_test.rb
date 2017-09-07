@@ -3,7 +3,7 @@ require 'pizzamachine.rb'
 
 class TestSizeOption < Minitest::Test
   def setup
-    @size_option_options = {size: 16, price: 19.95, shape: "round"}  
+    @size_option_options = {size: 16, price: 19.95, shape: "round"}
     @size_option = PizzaMachine::SizeOption.new(@size_option_options)
   end
 

@@ -27,7 +27,7 @@ pizza_places.each do |pizza_place|
         ws[row, diameter_round_col] = size_option.size
       elsif size_option.shape = "square"
         ws[row, diameter_square_col] = size_option.size
-      else 
+      else
         raise StandardError.new("The pizza's size option is neither round nor square: #{size_option.inspect}")
       end
       ws[row, price_col] = size_option.price
