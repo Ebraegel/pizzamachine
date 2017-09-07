@@ -9,8 +9,8 @@ class TestScraperLuce < Minitest::Test
     @@luce = PizzaMachine::Scraper::Luce.run if @@luce.nil?
   end
 
-  def test_that_luce_has_at_least_one_pizza
-    assert(@@luce.pizzas.length >= 1)
+  def test_that_luce_has_at_least_five_pizzas
+    assert(@@luce.pizzas.length >= 5)
   end
 
   def test_that_each_pizza_has_at_least_two_size_options
@@ -22,7 +22,7 @@ class TestScraperLuce < Minitest::Test
   def test_that_each_size_option_has_a_valid_price
     @@luce.pizzas.each do |pizza|
       pizza.size_options.each do |so|
-        assert(so.price.match(/\d+\.\d+/))
+        assert(so.price.match(/^\d+\.\d+$/))
       end
     end
   end
@@ -30,7 +30,7 @@ class TestScraperLuce < Minitest::Test
   def test_that_each_size_option_has_a_valid_size
     @@luce.pizzas.each do |pizza|
       pizza.size_options.each do |so|
-        assert(so.size.match(/\d+/))
+        assert(so.size.match(/^\d+$/))
       end
     end
   end
@@ -38,7 +38,7 @@ class TestScraperLuce < Minitest::Test
   def test_that_each_price_can_be_cast_to_float
     @@luce.pizzas.each do |pizza|
       pizza.size_options.each do |so|
-        assert(so.price.respond_to?(:to_f))
+        assert(!!Float(so.price))
       end
     end
   end

@@ -15,7 +15,7 @@ price_col = 3
 diameter_round_col = 4
 diameter_square_col = 5
 
-pizza_places = [PizzaMachine::Scraper::Luce.run, PizzaMachine::Scraper::Parkway.run]
+pizza_places = [PizzaMachine::Scraper::Luce.run, PizzaMachine::Scraper::Parkway.run, PizzaMachine::Scraper::RedsSavoy.run]
 
 pizza_places.each do |pizza_place|
   pizza_place.pizzas.each do |pizza|

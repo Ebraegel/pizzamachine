@@ -51,6 +51,16 @@ Once you're in there, try something like
 luce = PizzaMachine::Scraper::Luce.run
 ```
 
+### Updating Pizza spreadsheets
+
+`bin/rescrape_and_update_sheet.rb` will run all the scrapers and update your spreadsheet (provided you have set SPREADSHEET_URL and GOOGLE_DRIVE_SERVICE_ACCOUNT_KEY_JSON).  If you've set those env variables in Heroku, this works great, and you might want to set up a Heroku Scheduler schedule to `bundle exec bin/rescrape_and_update_sheet.rb`.  Even daily runs are probably overkill, so maybe find a different scheduling facility to use sometime.
+
+However, in a local dev environment, it seems like dotenv has some trouble with command substitution in the .env file.  The easiest way around this is to just source the .env file before running the script:
+
+```
+. .env; bundle exec bin/rescrape_and_update_sheet.rb
+```
+
 ### Run tests
 ```
 bundle exec rake test
@@ -84,17 +94,17 @@ in no particular order
   * get pry's magic pretty-printing working in the container
   * it just drops you in irb by default, figure out what to do instead when it's run for real
     * maybe a script to build and/or run the thing?  More research needed, maybe overlapping with the "figure out heroku" research.
-* Figure out Google Sheets API
-  * how to authorize the thing to access my sheet if it's running in Heroku or somewhere
+* Figure out Google Sheets API [done]
+  * how to authorize the thing to access my sheet if it's running in Heroku or somewhere [done]
   * how to get stuff from the spreadsheet [done]
   * how to put stuff into the spreadsheet [done]
 * Once Google Sheets API is figured out, see if I can run all the scrapers and shove all the pizzas into the sheet to update it [done]
   * What if one or more scraper fails?  Maybe some provision to update pizza place by pizza place, section by section on the CSV? Yikes.
-* Get it into Heroku or something
-  * Figure out secret management
-  * maybe make a new "service account" for google to actually own the sheets (so my personal account isn't compromised if heroku or I fuck up)
-  * maybe make appname.herokuapp.com go straight to the spreadsheet (read-only)
-* Schedule periodic parser runs? (heroku clock thingy?)
+* Get it into Heroku or something [done]
+  * Figure out secret management [done?]
+  * maybe make a new "service account" for google to actually own the sheets (so my personal account isn't compromised if heroku or I fuck up) [done]
+  * maybe make appname.herokuapp.com go straight to the spreadsheet (read-only) [done]
+* Schedule periodic parser runs? (heroku clock thingy?) [done]
 * Schedule periodic tests or some way to validate my parsers (what to do if the menus change and I pull in weird results?)
 * Add some exceptions to the parsers and/or data structure classes - a lot is flying on assumptions right now
 * Add more menu parsers
@@ -104,7 +114,7 @@ in no particular order
     * Dominos (yeah...)
     * Papa Murphy's
     * Davanni's
-    * Red's Savoy
+    * Red's Savoy [done]
     * Casey's
     * Topper's
 * Handle specialty vs build-your-own
