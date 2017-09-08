@@ -64,11 +64,32 @@ menu = [["Baked Potato Pizza  ", "  GFR"],
          ... ]
 =end
 
-
         luce = PizzaMachine::PizzaPlace.new(name: "Pizza Luce")
-        pizza = PizzaMachine::Pizza.new
-
         shape = "round"
+
+        byo_size_options = page.css("div#menu-catBYO").css("div.sizeopt")
+
+        byo_size_options.each do |div|
+          size_title = div.css("li.sizetitle").text
+          # 10" Small: Servers 1-2
+          # 12" Medium: serves 2-3
+          # 16" Large: serves 3-5
+          # Gluten Free 10": serves 1-2
+
+          name = div.at('li:contains("Basic Cheese:")').children.first.text.gsub(/:/, '')
+
+          pizza = PizzaMachine::Pizza.new(name: name)
+          luce.add_pizza(pizza)
+
+
+          size = size_title.match(/(\d+)"/)[1]
+          gf = size_title.match?(/gluten/i) ? true : false
+          price = div.at('li:contains("Basic Cheese:")').children.last.text.strip.gsub(/\$/, '')
+
+          pizza.add_size_option(size: size, gluten_free: gf, price: price, shape: shape)
+        end
+
+        pizza = PizzaMachine::Pizza.new(name: name)
 
         menu.each do |a|
           if a.length == 2 # It must be a Pizza.  Clean up the name a bit and make a Pizza out of it.
