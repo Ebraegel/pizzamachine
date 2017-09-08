@@ -5,6 +5,7 @@ require 'pry-byebug'
 require_relative './luce.rb'
 require_relative './parkway.rb'
 require_relative './reds_savoy.rb'
+require_relative './davannis.rb'
 
 module PizzaMachine
   module Scraper

@@ -13,7 +13,7 @@ module PizzaMachine
 
     def is_sane?
       self.has_at_least_five_pizzas? &&
-        self.each_pizza_has_at_least_two_size_options? &&
+        self.each_pizza_has_at_least_one_size_option? &&
         self.each_size_option_has_a_valid_price? &&
         self.each_size_option_has_a_valid_size? &&
         self.each_price_can_be_cast_to_float?
@@ -23,10 +23,10 @@ module PizzaMachine
       self.pizzas.length >= 5
     end
 
-    def each_pizza_has_at_least_two_size_options?
+    def each_pizza_has_at_least_one_size_option?
       result = true
       self.pizzas.each do |pizza|
-        result = false unless pizza.size_options.length >= 2
+        result = false unless pizza.size_options.length >= 1
       end
       result
     end
