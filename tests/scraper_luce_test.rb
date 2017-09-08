@@ -13,9 +13,9 @@ class TestScraperLuce < Minitest::Test
     assert(@@luce.pizzas.length >= 5)
   end
 
-  def test_that_each_pizza_has_at_least_two_size_options
+  def test_that_each_pizza_has_at_least_one_size_options
     @@luce.pizzas.each do |pizza|
-      assert(pizza.size_options.length >= 2)
+      assert(pizza.size_options.length >= 1)
     end
   end
 
