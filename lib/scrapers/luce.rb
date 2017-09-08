@@ -76,6 +76,7 @@ menu = [["Baked Potato Pizza  ", "  GFR"],
           # 16" Large: serves 3-5
           # Gluten Free 10": serves 1-2
 
+          # nokogiri select by matching text.  Need to keep that in the brain-box for later.
           name = div.at('li:contains("Basic Cheese:")').children.first.text.gsub(/:/, '')
 
           pizza = PizzaMachine::Pizza.new(name: name)
