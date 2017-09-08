@@ -35,6 +35,8 @@ in no particular order
     * Red's Savoy [done]
     * Casey's (this is a joke but I'm curious)
     * Topper's
+    * Carbone's
+    * Pizza Man
 * Handle specialty vs build-your-own
   * maybe figure out a size/topping cost multiplier for each pizza place and have a field on the sheet to choose the number of extra toppings?
   * What about places (e.g. Luce) that have different costs for different toppings?
