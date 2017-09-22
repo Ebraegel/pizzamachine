@@ -4,9 +4,10 @@ module PizzaMachine
 
     def initialize(**params)
       @size = params[:size]
-      @price = params[:price]
       @shape = params[:shape]
       @gluten_free = params[:gluten_free] || false
+      price_param = params[:price]
+      @price = price_param.is_a?(String) ? price_param.gsub(/\$/,'') : price_param
     end
 
     def gluten_free?

@@ -19,17 +19,6 @@ module PizzaMachine
         menu
       end
 
-      def self.strip_dollar(price)
-        price.gsub(/\$/,'')
-      end
-
-      def self.normalize_prices(menu)
-        menu.each do |name, prices|
-          menu[name] = prices.map { |price| strip_dollar(price)}
-        end
-        menu
-      end
-
       def self.run
         # Just guessing at sizes here.  These should be updated after further reconnaissance!
         solo = '6'
@@ -46,9 +35,6 @@ module PizzaMachine
 
         menu = add_items_to_menu(menu, get_items(url))
         gf_menu = add_items_to_menu(gf_menu, get_items(gf_url))
-
-        menu = normalize_prices(menu)
-        gf_menu = normalize_prices(gf_menu)
 
         shape = "round"
 

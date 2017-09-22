@@ -19,7 +19,7 @@ Raven.capture do
   diameter_round_col = 4
   diameter_square_col = 5
 
-  pizza_places = [PizzaMachine::Scraper::Luce.run, PizzaMachine::Scraper::Parkway.run, PizzaMachine::Scraper::RedsSavoy.run, PizzaMachine::Scraper::Davannis.run]
+  pizza_places = [PizzaMachine::Scraper::Luce.run, PizzaMachine::Scraper::Parkway.run, PizzaMachine::Scraper::RedsSavoy.run, PizzaMachine::Scraper::Davannis.run, PizzaMachine::Scraper::Carbones.run]
 
   pizza_places.each do |pizza_place|
     raise StandardError.new("The pizza place #{pizza_place.name} didn't pass sanity checks!\nDumping pizza_place.inspect and bailing on the whole update.  Good luck!\n\n#{pizza_place.inspect}\n") unless pizza_place.is_sane?
