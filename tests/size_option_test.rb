@@ -25,4 +25,10 @@ class TestSizeOption < Minitest::Test
     @size_option.gluten_free = true
     assert(@size_option.gluten_free?)
   end
+
+  def test_it_strips_dollar_signs_from_prices
+    test_size_options = @size_option_options.merge({price: "$19.99"})
+    size_option = PizzaMachine::SizeOption.new(test_size_options)
+    assert_equal(size_option.price, "19.99")
+  end
 end

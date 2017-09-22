@@ -35,7 +35,7 @@ in no particular order
     * Red's Savoy [done]
     * Casey's (this is a joke but I'm curious)
     * Topper's
-    * Carbone's
+    * Carbone's [done]
     * Pizza Man
 * Cache last scrape result somehow (or use spreadsheet data to build and diff pizza places), and send an alert email or something if there's a menu change.
 * Handle specialty vs build-your-own
