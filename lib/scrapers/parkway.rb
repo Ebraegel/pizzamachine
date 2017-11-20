@@ -6,16 +6,16 @@ module PizzaMachine
 
       def self.run
 
-        url = 'https://www.opendining.net/menu/56be296b515ee98d547b23c7'
+        url = 'https://www.opendining.net/menu/56be296b515ee98d547b23c7#pizza'
 
         page = Nokogiri::HTML(Faraday.get(url).body)
 
         menu = {}
 
-        page.css('div#menu > div').at('h2:contains("Pizza")').parent.css('ul > li.item').each do |li|
-          name = li.css('form > div.item_header > div.item-info > h3').text
+        page.css('div#menu > div').at('h2:contains("Pizza")').parent.parent.css('ul > li.item').each do |li|
+          name = li.css('div.odn_item_header > div.item-info > h3').text
           menu[name] = []
-          li.css('form > div.item_details > div.options > div.size-container > select > option').each do |size_option|
+          li.css('div.item_details > div.options > div.size-container > select > option').each do |size_option|
             menu[name] << size_option.text
           end
         end
